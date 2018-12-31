@@ -12,6 +12,9 @@
         <script src="main.js"></script>
     </head>
     <body>
+        <!--
+            Login Fenster
+        -->
         <div id="loginwindow" title="Patientensystem">
             <div id="login">
                 <ul>
@@ -47,6 +50,19 @@
                             <td colspan="2"><button id="submit_register" type="button">Registrieren</button></td>
                         </tr>
                     </table>
+                </div>
+            </div>
+        </div>
+
+        <div id="main">
+            <ul>
+                <li><a href="#main-start">Startseite</a></li>
+            </ul>
+            <div id="main-start">
+                <div id="start_navbarleft">
+                    <button type="button" id="newpatient">Neuer Patient</button><br>
+                    <button type="button" id="newaction">Neue Behandlung</button><br>
+                    <button type="button" id="newtab">Neue Seite (DEBUG BUTTON)</button><br>
                 </div>
             </div>
         </div>
