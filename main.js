@@ -1,18 +1,29 @@
+//USERVARIABLE!
+var userauttoken;
+
 //Initialisieren des Loginfensters
 function openLoginWindow() {
+    $('#login').tabs();
+    $('#submit_login').button().click(function () {
+        user = {};
+        user['username'] = $('#login_username').val();
+        user['password'] = $('#login_password').val();
+        $('#loginwindow').dialog('destroy').remove();
+    });
+    $('#submit_register').button().click(function () {
+    });
     $('#loginwindow').dialog({
         width:"auto",
         heigth:"auto",
         modal:true,
+        dialogClass:'notCloseableDialog'
     });
-    $('#login').tabs();
 };
 
 //Initialisiere die Hauptseite
 function siteloader() {
-    $('#main').tabs({
+    $('#main').tabs();
 
-    });
 }
 
 //Neuen Tab Erstellen
@@ -31,9 +42,10 @@ function newTab(tabtitle) {
 
 //Functioncaller
 $(function () {
-    siteloader();
     openLoginWindow();
+    siteloader();
     $('#newtab').button().click(function() {
-        newTab("Neuer Tab");
+        id = newTab("Neuer Tab");
+        console.log(id);
     })
 })

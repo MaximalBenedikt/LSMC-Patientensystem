@@ -1,0 +1,53 @@
+#loginwindow button {
+    width: -webkit-fill-available;
+}
+
+.notCloseableDialog .ui-button-icon-only{
+    display: none !important;
+}
+
+.roundborders {
+    padding: 5px;
+    padding-top: 10px;
+    border: 1px solid gray;
+    border-radius: 18px;
+}
+
+.legend {
+    padding-left: 5px;
+    margin-left: 20px;
+    padding-right: 5px;
+    text-decoration: underline;
+}
+
+.table_patientsdata {
+    width: 100%;
+}
+
+.table_patientsdata input,textarea,select {
+    width: 250px;
+}
+
+.table_patientsdata td {
+    text-align: right;
+}
+
+.actionstable {
+    width: 100%;
+}
+
+.actionstable .idhead {
+    width: 5%;
+}
+
+.actionstable .diagnosehead {
+    width: 40%;
+}
+
+.actionstable .actionshead {
+    width: 35%;
+}
+
+.actionstable .medicationshead {
+    width: 20%;
+}
