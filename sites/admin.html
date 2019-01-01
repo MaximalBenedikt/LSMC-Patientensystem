@@ -1,0 +1,128 @@
+<button class="close">X</button>
+<div id="adminbody">
+    <div id="admin">
+        <ul>
+            <li><a href="#admin-start">Startseite</a></li>
+            <li><a href="#admin-logs">Logs</a></li>
+            <li><a href="#admin-users">Users</a></li>
+            <li><a href="#admin-patient">Patienten</a></li>
+            <li><a href="#admin-treatments">Behandlungen</a></li>
+        </ul>
+        <div id="admin-start">
+            Dies Ist die Startseite des Adminbereichs!
+        </div>
+        <div id="admin-logs">
+            <table>
+                <thead>
+                    <tr>
+                        <th>LOGID</th>
+                        <th>User</th>
+                        <th>Aktion</th>
+                        <th>Inhalte</th>
+                        <th>Eintrag</th>
+                    </tr>
+                    <tr>
+                        <th>Suche:</th>
+                        <th>
+                            <select>
+                                <option>Alle</option>
+                                <optgroup label="Admins">
+                                    <option>01 | Hanson, Isabella</option>
+                                    <option>85 | Parker, Simon</option>
+                                </optgroup>
+                                <optgroup label="Angestellte">
+                                    <option>22 | Da Silva, Chiara</option>
+                                    <option>33 | Hunter, Joshua</option>
+                                    <option>97 | Miller, Finn</option>
+                                </optgroup>
+                            </select>
+                        </th>
+                        <th>
+                            <select>
+                                <option>Alles</option>
+                                <option>Öffnen</option>
+                                <option>Erstellen</option>
+                                <option>Bearbeiten</option>
+                                <option>Löschen</option>
+                            </select>
+                        </th>
+                        <th>
+                            <select>
+                                <option>Alles</option>
+                                <option>Patienten</option>
+                                <option>Behandlungen</option>
+                            </select>
+                        </th>
+                        <th>
+
+                        </th>
+                    </tr>
+                </thead>
+                <tbody id="loginsert">
+                    <tr>
+                        <td>1</td>
+                        <td>01 | Hanson, Isabella</td>
+                        <td>Erstellen</td>
+                        <td>Patienten</td>
+                        <td>Miller, Finn</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="admin-users">
+            <table id="admin-users-table">
+                <thead>
+                    <tr>
+                        <td>D-NR</td>
+                        <td>Name</td>
+                        <td>Ausbildung</td>
+                        <td>Username</td>
+                    </tr>
+                </thead>
+                <tbody id="userinsert">
+                    <tr>
+                        <td>01</td>
+                        <td>Hanson, Isabella</td>
+                        <td>Oberärztin</td>
+                        <td>Is-Hanson</td>
+                    </tr>
+                    <tr>
+                        <td>01</td>
+                        <td>Hanson, Isabella</td>
+                        <td>Oberärztin</td>
+                        <td>Is-Hanson</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="admin-patient">
+            <table id="admin-patients-table">
+                <thead>
+                    <tr>
+                        <td>Lfd-NR</td>
+                        <td>Name</td>
+                        <td>Geburtsdatum</td>
+                        <td>Anzahl Behandlungen</td>
+                    </tr>
+                </thead>
+                <tbody id="patientsinsert">
+                    <tr>
+                        <td>01</td>
+                        <td>Hanson, Isabella</td>
+                        <td>Oberärztin</td>
+                        <td>Is-Hanson</td>
+                    </tr>
+                    <tr>
+                        <td>02</td>
+                        <td>Hanson, Isabella</td>
+                        <td>Oberärztin</td>
+                        <td>Is-Hanson</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="admin-treatments">
+
+        </div>
+    </div>
+</div>

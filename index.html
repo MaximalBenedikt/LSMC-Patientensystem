@@ -58,118 +58,38 @@
         <div id="main">
             <ul>
                 <li><a href="#main-start">Startseite</a></li>
-                <li><a href="#main-patientenprotokoll">Patient</a></li>
             </ul>
             <div id="main-start">
                 <div id="start_navbarleft">
                     <button type="button" id="newpatient">Neuer Patient</button>
                     <button type="button" id="newaction">Neue Behandlung</button>
-                    <button type="button" id="">Test</button>
+                    <button type="button" id="openadmin">Adminseiten</button>
                 </div>
-            </div>
-            <div id="main-patientenprotokoll">
-                <fieldset class="patientsdata roundborders">
-                    <legend class="legend">Patientendaten</legend>
-                    <table class="table_patientsdata">
-                        <tr>
-                            <td>Name:</td>
-                            <td><input></td>
-                            <td>Bekannte Erkrankung:</td>
-                            <td><input></td>
-                        </tr>
-                        <tr>
-                            <td>Vorname:</td>
-                            <td><input></td>
-                            <td>Bekannte Begleiterkrankungen:</td>
-                            <td><input></td>
-                        </tr>
-                        <tr>
-                            <td>Geschlecht:</td>
-                            <td>
-                                <select>
-                                    <option>Männlich</option>
-                                    <option>Weiblich</option>
-                                    <option>Unbestimmt</option>
-                                </select>
-                            </td>
-                            <td>Bekannte Allergien:</td>
-                            <td><input></td>
-                        </tr>
-                        <tr>
-                            <td>Geb. Datum</td>
-                            <td><input type="date"></td>
-                            <td>Aktuelle Medikation:</td>
-                            <td><input></td>
-                        </tr>
-                        <tr>
-                            <td>Beruf/Tätigkeit:</td>
-                            <td><input></td>
-                            <td>Medikamentenunverträglichkeit:</td>
-                            <td><input></td>
-                        </tr>
-                        <tr>
-                            <td>Familienstand:</td>
-                            <td>
-                                <select>
-                                    <option>Ledig</option>
-                                    <option>Verheiratet</option>
-                                    <option>Geschieden</option>
-                                    <option>Verwittwet</option>
-                                </select>
-                            </td>
-                            <td rowspan="3">Suchtprobleme:</td>
-                            <td rowspan="3">
-                                <select multiple>
-                                        <option>Marihuana</option>
-                                        <option>Alkohol</option>
-                                        <option>Andere</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Tattoo's:</td>
-                            <td><input></td>
-                        </tr>
-                        <tr>
-                            <td>Blutgruppe:</td>
-                            <td>
-                                <select>
-                                    <option>Nicht Bekannt</option>
-                                    <option>Untersuchung angeordnet</option>
-                                    <option>0+</option>
-                                    <option>0-</option>
-                                    <option>A+</option>
-                                    <option>A-</option>
-                                    <option>B+</option>
-                                    <option>B-</option>
-                                    <option>AB+</option>
-                                    <option>AB-</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Telefonnummer</td>
-                            <td><input type="number"></td>
-                            <td>E-Mail</td>
-                            <td><input></td>
-                        </tr>
-                        <tr>
-                            <td>Notfallkontakt(e):</td>
-                            <td><textarea rows="4"></textarea></td>
-                            <td>Bemerkungen:</td>
-                            <td><textarea rows="4"></textarea></td>
-                        </tr>
-                    </table>
-                </fieldset>
-                <fieldset class="roundborders">
-                    <legend class="legend">Behandlungsdaten</legend>
-                    <table class="actionstable">
+                <br><br>
+                <fieldset id="patientsearch" class="roundborders">
+                    <legend class="legend">Patient suchen</legend>
+                    <table>
                         <thead>
-                            <th class="idhead">B-ID</th>
-                            <th class="diagnosehead">Diagnose</th>
-                            <th class="actionshead">Behandlung</th>
-                            <th class="medicationshead">Medikation</th>
+                            <tr>
+                                <th colspan="2">Name, Vorname</th>
+                                <th>Geburtsdatum</th>
+                                <th>Geschlecht</th>
+                                <th><button type="button">Zurücksetzen</button></th>
+                            </tr>
+                            <tr>
+                                <th colspan="2"><input></th>
+                                <th><input type="date"></th>
+                                <th>
+                                    <select>
+                                        <option>Unbekannt</option>
+                                        <option>Männlich</option>
+                                        <option>Weiblich</option>
+                                    </select>
+                                </th>
+                                <th><button type="button">Suchen</button></th>
+                            </tr>
                         </thead>
+                        <tbody></tbody>
                     </table>
                 </fieldset>
             </div>

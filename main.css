@@ -6,6 +6,8 @@
     display: none !important;
 }
 
+/* Fieldset und Legend */
+
 .roundborders {
     padding: 5px;
     padding-top: 10px;
@@ -20,17 +22,21 @@
     text-decoration: underline;
 }
 
+/* Patientendaten */
+
 .table_patientsdata {
     width: 100%;
 }
 
-.table_patientsdata input,textarea,select {
+.table_patientsdata input,.table_patientsdata textarea,.table_patientsdata select {
     width: 250px;
 }
 
 .table_patientsdata td {
     text-align: right;
 }
+
+/* Patientenbehandlungsdaten */
 
 .actionstable {
     width: 100%;
@@ -50,4 +56,99 @@
 
 .actionstable .medicationshead {
     width: 20%;
+}
+
+/* Behandlungsakten */
+
+#main{
+    background-color: #fdddcf !important;
+}
+
+.verletzungen {
+    width: 534px;
+    overflow: hidden;
+    border: 1px solid black;
+}
+
+.verletzungen img {
+    height: 33%;
+    float: right;
+}
+
+.notfallsituation {
+    width: 256px;
+    float: left;
+}
+
+.verletzungstyp {
+    font-size: 60%;
+}
+
+.verletzungsart {
+    background-color: #fdddcf;
+    border-collapse: collapse;
+}
+
+.verletzungsart tr:nth-child(even) {
+    background-color: #fabda8;
+}
+
+.verletzungsart th {
+    text-align: center;
+    font-size: 65%;
+    width: 42px;
+}
+.verletzungsart th:first-child {
+    width: 80px;
+}
+.verletzungsart td:first-child {
+    text-align: right;
+    font-size: small;
+}
+.verletzungsart td {
+    text-align: center;
+}
+
+.meds {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.meds td {
+    border: 1px solid black;
+    text-align: center;
+}
+
+.close{
+    position: absolute;
+    right: 20px;
+}
+
+.behandlungsprotokoll thead {
+    border: 1px solid grey;
+}
+
+#openadmin {
+    float: right;
+}
+
+.adminfullscreen {
+    padding: 0px !important;
+}
+
+#adminbody table {
+    background-color: #ffeda0;
+    border-collapse: collapse;
+    border: none;
+    width: 100%;
+}
+#adminbody tbody tr:nth-child(even) {
+    background-color: #ead78a;
+}
+#adminbody thead {
+    background-color: #f3c600; 
+}
+#adminbody td, th {  
+    text-align: left;
+    padding: 0.5em 1em;
 }

@@ -1,0 +1,173 @@
+<button class="close">X</button>
+<table class="behandlungsprotokoll">
+    <thead>
+        <tr>
+            <td>Name:</td>
+            <td><input></td>
+        </tr>
+        <tr>
+            <td>Vorname:</td>
+            <td><input></td>
+        </tr>
+        <tr>
+            <td>Geschlecht:</td>
+            <td>
+                <select>
+                    <option>Unbekannt</option>
+                    <option>Männlich</option>
+                    <option>Weiblich</option>
+                </select>
+            </td>
+            <td><button>Person suchen</button></td>
+        </tr>
+        <tr>
+            <td></td>
+        </tr>
+    </thead>
+    <tr>
+        <td>Situation / Symptome:</td>
+        <td>
+            <textarea rows="5"></textarea>
+        </td>
+    </tr>
+    <tr>
+        <td>Verletzungen:</td>
+        <td><textarea rows="10"></textarea><br><button id="generate" style="width:-webkit-fill-available;">Text Generieren</button></td>
+        <td class="verletzungen">
+            <img src="man.PNG">
+            <table class="verletzungstyp">
+                <tr>
+                    <td><input type="checkbox" id="prellung"><label for="prellung">Prellung</label></td>
+                    <td><input type="checkbox" id="fraktur"><label for="fraktur">Fraktur</label></td>
+                    <td><input type="checkbox" id="verbrennung"><label for="verbrennung">Verbrennung</label></td>
+                    <td><input type="checkbox" id="keine"><label for="keine">Keine</label></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" id="wunde"><label for="wunde">Wunde</label></td>
+                    <td><input type="checkbox" id="elektro"><label for="elektro">Elektrounfall</label></td>
+                    <td><input type="checkbox" id="verletzung"><label for="verletzung">Verletzung</label></td>
+                    <td><input type="checkbox" id="sonstige"><label for="sonstige">Sonstige</label></td>
+                </tr>
+            </table>
+            <table class="verletzungsart">
+                <tr>
+                    <th></th>
+                    <th>offen</th>
+                    <th>geschl.</th>
+                    <th>leicht</th>
+                    <th>mittel</th>
+                    <th>schwer</th>
+                </tr>
+                <tr id="head">
+                    <td>Schädel-Hirn</td>
+                    <td><input type="checkbox" id="open"></td>
+                    <td><input type="checkbox" id="close"></td>
+                    <td><input type="checkbox" id="light"></td>
+                    <td><input type="checkbox" id="mid"></td>
+                    <td><input type="checkbox" id="hard"></td>
+                </tr>
+                <tr id="face">
+                    <td>Gesicht</td>
+                    <td><input type="checkbox" id="open"></td>
+                    <td><input type="checkbox" id="close"></td>
+                    <td><input type="checkbox" id="light"></td>
+                    <td><input type="checkbox" id="mid"></td>
+                    <td><input type="checkbox" id="hard"></td>
+                </tr>
+                <tr id="chest">
+                    <td>Brustkorb</td>
+                    <td><input type="checkbox" id="open"></td>
+                    <td><input type="checkbox" id="close"></td>
+                    <td><input type="checkbox" id="light"></td>
+                    <td><input type="checkbox" id="mid"></td>
+                    <td><input type="checkbox" id="hard"></td>
+                </tr>
+                <tr id="belly">
+                    <td>Bauch</td>
+                    <td><input type="checkbox" id="open"></td>
+                    <td><input type="checkbox" id="close"></td>
+                    <td><input type="checkbox" id="light"></td>
+                    <td><input type="checkbox" id="mid"></td>
+                    <td><input type="checkbox" id="hard"></td>
+                </tr>
+                <tr id="pelvis">
+                    <td>Hüfte</td>
+                    <td><input type="checkbox" id="open"></td>
+                    <td><input type="checkbox" id="close"></td>
+                    <td><input type="checkbox" id="light"></td>
+                    <td><input type="checkbox" id="mid"></td>
+                    <td><input type="checkbox" id="hard"></td>
+                </tr>
+                <tr id="arms">
+                    <td>Arme</td>
+                    <td><input type="checkbox" id="open"></td>
+                    <td><input type="checkbox" id="close"></td>
+                    <td><input type="checkbox" id="light"></td>
+                    <td><input type="checkbox" id="mid"></td>
+                    <td><input type="checkbox" id="hard"></td>
+                </tr>
+                <tr id="legs">
+                    <td>Beine</td>
+                    <td><input type="checkbox" id="open"></td>
+                    <td><input type="checkbox" id="close"></td>
+                    <td><input type="checkbox" id="light"></td>
+                    <td><input type="checkbox" id="mid"></td>
+                    <td><input type="checkbox" id="hard"></td>
+                </tr>
+                <tr id="softparts">
+                    <td>Weichteile</td>
+                    <td><input type="checkbox" id="open"></td>
+                    <td><input type="checkbox" id="close"></td>
+                    <td><input type="checkbox" id="light"></td>
+                    <td><input type="checkbox" id="mid"></td>
+                    <td><input type="checkbox" id="hard"></td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td>Maßnahmen:</td>
+        <td><textarea></textarea></td>
+        <td rowspan="2">
+            <table class="meds">
+                <tr>
+                    <td>Schmerzen</td>
+                    <td>Ibuprofen</td>
+                    <td>Novalgin</td>
+                    <td>Tramadol</td>
+                    <td>Morphin</td>
+                </tr>
+                <tr>
+                    <td>Einzeldosis:</td>
+                    <td>200mg-800mg</td>
+                    <td>
+                        0,5 - 1g<br>
+                        20-40 Trpf
+                    </td>
+                    <td>
+                        50 - 100mg<br>
+                        20-40 Trpf
+                    </td>
+                    <td>10-60 mg</td>
+                </tr>
+                <tr>
+                    <td>max. Tagesdosis</td>
+                    <td>2400mg</td>
+                    <td>4000mg <br> 120 Trpf</td>
+                    <td>400mg <br> 160 Trpf</td>
+                    <td>60-120 mg</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td>Medikamente:</td>
+        <td><textarea></textarea></td>
+    </tr>
+    <tr>
+        <td>
+            <button>Speichern</button>
+            <button></button>
+        </td>
+    </tr>
+</table>
