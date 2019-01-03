@@ -12,9 +12,7 @@
         <script src="main.js"></script>
     </head>
     <body>
-        <!--
-            Login Fenster
-        -->
+        <!-- Login Fenster -->
         <div id="loginwindow" title="Patientensystem Login">
             <div id="login">
                 <ul>
@@ -56,7 +54,7 @@
 
         <!-- Mainbody -->
         <div id="main">
-            <ul>
+            <ul id="bodynavigator">
                 <li><a href="#main-start">Startseite</a></li>
             </ul>
             <div id="main-start">
@@ -71,16 +69,18 @@
                     <table>
                         <thead>
                             <tr>
-                                <th colspan="2">Name, Vorname</th>
+                                <th>Name</th>
+                                <th>Vorname</th>
                                 <th>Geburtsdatum</th>
                                 <th>Geschlecht</th>
                                 <th><button type="button">Zurücksetzen</button></th>
                             </tr>
                             <tr>
-                                <th colspan="2"><input></th>
-                                <th><input type="date"></th>
+                                <th><input id="surname" size="15" class="searchPatient"></th>
+                                <th><input id="name" size="15" class="searchPatient"></th>
+                                <th><input type="date" class="searchPatient"></th>
                                 <th>
-                                    <select>
+                                    <select class="">
                                         <option>Unbekannt</option>
                                         <option>Männlich</option>
                                         <option>Weiblich</option>

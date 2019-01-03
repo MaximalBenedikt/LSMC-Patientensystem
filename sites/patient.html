@@ -1,94 +1,105 @@
 <button class="close">X</button>
 <fieldset class="patientsdata roundborders">
     <legend class="legend">Patientendaten</legend>
+    <input type="hidden" id="identifier" value="new">
     <table class="table_patientsdata">
         <tr>
             <td>Name:</td>
-            <td><input></td>
+            <td><input id="surname" class="minimum"></td>
             <td>Bekannte Erkrankung:</td>
-            <td><input></td>
+            <td><input id="sickness"></td>
         </tr>
         <tr>
             <td>Vorname:</td>
-            <td><input></td>
-            <td>Bekannte Begleiterkrankungen:</td>
-            <td><input></td>
+            <td><input id="name" class="minimum"></td>
+            <td>Bekannte Allergien:</td>
+            <td><input id="allergy"></td>
         </tr>
         <tr>
             <td>Geschlecht:</td>
             <td>
-                <select>
-                    <option>Männlich</option>
-                    <option>Weiblich</option>
-                    <option>Unbestimmt</option>
+                <select id="gender" class="minimum">
+                    <option selected disabled id="">Bitte Auswählen</option>
+                    <option id="man">Männlich</option>
+                    <option id="woman">Weiblich</option>
                 </select>
             </td>
-            <td>Bekannte Allergien:</td>
-            <td><input></td>
+            <td>Aktuelle Medikation:</td>
+            <td><input id="medicine"></td>
         </tr>
         <tr>
             <td>Geb. Datum</td>
-            <td><input type="date"></td>
-            <td>Aktuelle Medikation:</td>
-            <td><input></td>
+            <td><input type="date" id="birthday" class="minimum"></td>
+            <td>Medikamentenunverträglichkeit:</td>
+            <td><input id="medicineincompatibility"></td>
         </tr>
         <tr>
             <td>Beruf/Tätigkeit:</td>
-            <td><input></td>
-            <td>Medikamentenunverträglichkeit:</td>
-            <td><input></td>
+            <td><input id="job"></td>
+            <td rowspan="3">Suchtprobleme:</td>
+            <td rowspan="3">
+                <select multiple id="addiction">
+                    <option id="alcohol">Alkohol</option>
+                    <option id="smoke">Raucher</option>
+                    <option id="weed">Marihuanna</option>
+                    <option id="cocaine">Kokain</option>
+                    <option id="heroin">Heroin</option>
+                    <option id="crack">Crack</option>
+                    <option id="crystal">Crystal-Meth</option>
+                    <option id="drugs">Tabletten</option>
+                    <option id="else">Anderes</option>
+                    <option id="no" selected>keine</option>
+                </select>
+            </td>
         </tr>
         <tr>
             <td>Familienstand:</td>
             <td>
-                <select>
-                    <option>Ledig</option>
-                    <option>Verheiratet</option>
-                    <option>Geschieden</option>
-                    <option>Verwittwet</option>
-                </select>
-            </td>
-            <td rowspan="3">Suchtprobleme:</td>
-            <td rowspan="3">
-                <select multiple>
-                        <option>Marihuana</option>
-                        <option>Alkohol</option>
-                        <option>Andere</option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td>Tattoo's:</td>
-            <td><input></td>
-        </tr>
-        <tr>
-            <td>Blutgruppe:</td>
-            <td>
-                <select>
-                    <option>Nicht Bekannt</option>
-                    <option>Untersuchung angeordnet</option>
-                    <option>0+</option>
-                    <option>0-</option>
-                    <option>A+</option>
-                    <option>A-</option>
-                    <option>B+</option>
-                    <option>B-</option>
-                    <option>AB+</option>
-                    <option>AB-</option>
+                <select id="martialstatus">
+                    <option disabled selected id="">Bitte Auswählen</option>
+                    <option id="single">Ledig</option>
+                    <option id="married">Verheiratet</option>
+                    <option id="divorced">Geschieden</option>
+                    <option id="widowed">Verwitwet</option>
                 </select>
             </td>
         </tr>
         <tr>
             <td>Telefonnummer</td>
-            <td><input type="number"></td>
+            <td><input type="number" id="number"></td>
+        </tr>
+        <tr>
+            <td>Blutgruppe:</td>
+            <td>
+                <select id="bloodtype">
+                    <option id="notknown">Nicht Bekannt</option>
+                    <option id="test">Untersuchung angeordnet</option>
+                    <option id="0+">0+</option>
+                    <option id="0-">0-</option>
+                    <option id="A+">A+</option>
+                    <option id="A-">A-</option>
+                    <option id="B+">B+</option>
+                    <option id="B-">B-</option>
+                    <option id="AB+">AB+</option>
+                    <option id="AB-">AB-</option>
+                </select>
+            </td>
             <td>E-Mail</td>
-            <td><input></td>
+            <td><input id="email"></td>
         </tr>
         <tr>
             <td>Notfallkontakt(e):</td>
-            <td><textarea rows="4"></textarea></td>
+            <td><textarea rows="4" id="emergencycontacts"></textarea></td>
             <td>Bemerkungen:</td>
-            <td><textarea rows="4"></textarea></td>
+            <td><textarea rows="4" id="notes"></textarea></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <button type="button" id="savebutton">Änderung Speichern</button>
+            </td>
+            <td colspan="2">
+                <button type="button" id="createtreatmentbutton">Behandlung erstellen</button>
+            </td>
         </tr>
     </table>
 </fieldset>
@@ -100,6 +111,7 @@
             <th class="diagnosehead">Diagnose</th>
             <th class="actionshead">Behandlung</th>
             <th class="medicationshead">Medikation</th>
+            <th class="">behandelnder Arzt</th>
         </thead>
     </table>
 </fieldset>

@@ -1,5 +1,11 @@
 # LSMC-Patientensystem
 
+Version 0.5 
+    Edited: Patientensystem funktiunstüchtig gemacht
+        Speichern, Bearbeiten
+        Tabtitel ändert sich beim Speichern
+
+
 Version 0.4
     Added: Patient Suchen (Oberfläche)
     Added: Behandlungsprotokoll (Oberfläche)

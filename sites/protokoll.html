@@ -1,24 +1,26 @@
 <button class="close">X</button>
 <table class="behandlungsprotokoll">
+    <input type="hidden" id="userid"><input type="hidden" id="actionid">
     <thead>
         <tr>
             <td>Name:</td>
-            <td><input></td>
+            <td><input id="surname"></td>
+            <td>Datum/Uhrzeit der Behandlung:<input type="datetime-local" id="datetime"></td>
         </tr>
         <tr>
             <td>Vorname:</td>
-            <td><input></td>
+            <td><input id="name"></td>
         </tr>
         <tr>
             <td>Geschlecht:</td>
             <td>
-                <select>
+                <select id="gender">
                     <option>Unbekannt</option>
-                    <option>Männlich</option>
-                    <option>Weiblich</option>
+                    <option id="man">Männlich</option>
+                    <option id="woman">Weiblich</option>
                 </select>
             </td>
-            <td><button>Person suchen</button></td>
+            <td><button disabled>Person suchen</button></td>
         </tr>
         <tr>
             <td></td>
@@ -27,14 +29,31 @@
     <tr>
         <td>Situation / Symptome:</td>
         <td>
-            <textarea rows="5"></textarea>
+            <textarea rows="5" id="symptoms"></textarea>
+        </td>
+        <td>
+            <table>
+                <tr>
+                    <td>Behandelnder Arzt/Personal:</td>
+                    <td>
+                        <input list="doc" id="medic">
+                        <datalist id="doc"></datalist>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Assistierender Arzt/Personal:</td>
+                    <td>
+                        <input list="assi" id="assistingmedic">
+                        <datalist id="assi"></datalist>
+                    </td>
+                </tr>
+            </table>
         </td>
     </tr>
     <tr>
-        <td>Verletzungen:</td>
-        <td><textarea rows="10"></textarea><br><button id="generate" style="width:-webkit-fill-available;">Text Generieren</button></td>
+        <td>Verletzungen/Diagnose:</td>
+        <td><textarea rows="10" id="diagnosis"></textarea><br><button id="generate" style="width:-webkit-fill-available;">Text Generieren</button></td>
         <td class="verletzungen">
-            <img src="man.PNG">
             <table class="verletzungstyp">
                 <tr>
                     <td><input type="checkbox" id="prellung"><label for="prellung">Prellung</label></td>
@@ -127,7 +146,7 @@
     </tr>
     <tr>
         <td>Maßnahmen:</td>
-        <td><textarea></textarea></td>
+        <td><textarea id="treatment"></textarea></td>
         <td rowspan="2">
             <table class="meds">
                 <tr>
@@ -162,12 +181,14 @@
     </tr>
     <tr>
         <td>Medikamente:</td>
-        <td><textarea></textarea></td>
+        <td><textarea id="drugs"></textarea></td>
     </tr>
     <tr>
         <td>
-            <button>Speichern</button>
-            <button></button>
+            <button id="savebutton">Speichern</button>
+        </td>
+        <td>
+            <button id="closecase">Fall Schließen</button>
         </td>
     </tr>
 </table>
