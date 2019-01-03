@@ -19,6 +19,7 @@
         $statement->execute();
         $return = $statement->fetchAll();
         echo json_encode(utf8ize($return));
+        
     }
 
 
