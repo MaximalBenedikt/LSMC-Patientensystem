@@ -272,6 +272,7 @@ function saveTreatment(userid, actionid, identifier) {
         },
         success:function (data)  {
             console.log(data)
+            updateTreatmentlists()
         }
     })
 }
@@ -282,6 +283,7 @@ function updateTreatmentlists() {
         id = $(value).val()
         if (id!='new') {
             insertpoint = $(value).parent().siblings('.treatmentsdata').find('.actionstable tbody')
+            $(value).parent().siblings('.treatmentsdata').find('.actionstable tbody').html('')
             $.ajax({
                 type:"POST",
                 url:"data.php",
