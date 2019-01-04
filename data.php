@@ -104,7 +104,6 @@
     //Behandlung speichern
     if ($_POST['action'] == 'saveTreatment') {
         $treatment = decodeUTFarray($_POST['treatment']);
-        echo "test";
         $treatment['datetime'] = date('Y-m-d H:i:s', strtotime($treatment['datetime']));        
         $sql = '';
         if ($_POST['id'] == 'new') {
@@ -124,12 +123,15 @@
             $values = rtrim($values,',');
             $sql = 'UPDATE `protocols` SET ' . $values . ' WHERE `id` = ' . $_POST['id'] . '';
         }
-        echo $sql;
         $statement = $pdo->prepare($sql);
         $statement->execute();
-        /*$sql = "SELECT `identifier` FROM `protocols` ORDER BY `id` DESC LIMIT 1";
-        $statement = $pdo->prepare($sql);
-        $statement->execute();
-        $return = $statement->fetch();
-        echo $return['identifier'];*/
+        $returnid = $_POST['id'];
+        if ($_POST['id'] == 'new') {
+            $sql = "SELECT `id` FROM `protocols` ORDER BY `id` DESC LIMIT 1";
+            $statement = $pdo->prepare($sql);
+            $statement->execute();
+            $return = $statement->fetch();
+            $returnid = $return['id'];
+        }
+        echo $returnid;
     }

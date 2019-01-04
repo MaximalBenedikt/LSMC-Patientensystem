@@ -136,6 +136,7 @@ function openPatient(id) {
 
 //Speichern
 function savePatient(identifier) {
+    //INFORMATIONSSAMMLER!
     var patient = {};
     $.each($(identifier).find('.table_patientsdata').find('input'),
         function (index){
@@ -243,6 +244,7 @@ function openTreatment(userid, id) {
 
 //Speichern
 function saveTreatment(userid, actionid, identifier) {
+    //DATAGETTER
     var data = {};
     data['patient'] = $(identifier).find('#userid').val();
     data['datetime'] = $(identifier).find('#datetime').val();
@@ -263,6 +265,7 @@ function saveTreatment(userid, actionid, identifier) {
     data['treatment'] = $(identifier).find('#treatment').val();
     data['drugs'] = $(identifier).find('#drugs').val();
     actionid = $(identifier).find('input#actionid').val();
+    //DATAGETTEREND
     $.ajax({
         type:'POST',
         url:"data.php",
@@ -272,7 +275,7 @@ function saveTreatment(userid, actionid, identifier) {
             id:actionid
         },
         success:function (data)  {
-            console.log(data)
+            $(identifier).find('input#actionid').val(data);
             updateTreatmentlists()
         }
     })
