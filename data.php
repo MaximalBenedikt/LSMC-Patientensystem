@@ -1,5 +1,6 @@
 <?php
-    require('db.php')
+    include('config.php');
+    $pdo = new PDO( $config['dbhost'] , $config['dbuser'] , $config['dbpass'] );
     function utf8ize($mixed) {
         if (is_array($mixed)) {
             foreach ($mixed as $key => $value) {
