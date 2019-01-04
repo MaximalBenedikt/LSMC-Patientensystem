@@ -24,6 +24,22 @@
 
 
     //Patientenaktionen
+    //Suchen
+    if ($_POST['action'] == 'searchPatient') {
+        $sql = "SELECT `name`,`surname`,`gender`,`identifier`,`birthday` FROM `patients` WHERE LOWER(`name`) LIKE LOWER('%" . $_POST['name'] . "%') OR LOWER(`surname`) LIKE LOWER('%" . $_POST['name'] . "%') ";
+        $statement = $pdo->prepare($sql);
+        $statement->execute();
+        $return = $statement->fetchAll();
+        echo json_encode(utf8ize($return));
+    }
+    //Öffnen
+    if ($_POST['action'] == 'loadPatient') {
+        $sql = "SELECT * FROM `patients` WHERE `identifier` = " . $_POST['id'];
+        $statement = $pdo->prepare($sql);
+        $statement->execute();
+        $return = $statement->fetch();
+        echo json_encode(utf8ize($return));
+    }
     //Speichern
     if ($_POST['action'] == 'savepatient') {
         $patient = $_POST['patient'];
@@ -64,7 +80,7 @@
         $return = $statement->fetch();
         echo json_encode(utf8ize($return));
     }
-
+    //Behandlung speichern
     if ($_POST['action'] == 'saveTreatment') {
         $treatment = $_POST['treatment'];
         echo "test";

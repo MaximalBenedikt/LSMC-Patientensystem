@@ -27,6 +27,7 @@ function siteloader() {
     $('#newpatient').button().click(function() { openPatient('new'); })
     $('#newaction').button().click(function() { openTreatment(0,'new'); })
     $('#openadmin').button().click(function() { openAdmin(); })
+    $('#search').button().click(function() { searchPatient(); })
     $('#openadmin').button('disable')
     $('#newaction').button('disable')
 }
@@ -54,37 +55,80 @@ function newTab(tabtitle) {
 //Patientenfunktionen!
 //Suchen
 function searchPatient(){
-    
+    name = $('#main-start').find('#name').val()
+    $.ajax({
+        type: "POST",
+        url: 'data.php',
+        data: {
+            action:'searchPatient',
+            name:name
+        },
+        success: function(data){
+            patients = $.parseJSON(data)
+            $('#main-start table tbody').html('')
+            $.each(patients, function(index) {
+                patient = patients[index]
+                $('#main-start table tbody').append('<tr id="' + patient['identifier'] + '"></tr>')
+                $('#main-start #' + patient['identifier']).append('<td>' + patient['surname'] + ', ' + patient['name'] + '</td>')
+                $('#main-start #' + patient['identifier']).append('<td>' + patient['birthday'] + '</td>')
+                $('#main-start #' + patient['identifier']).append('<td>' + patient['gender'] + '</td>')
+                $('#main-start #' + patient['identifier']).click(function(){
+                    openPatient($(this).attr('id'))
+                })
+            })
+        },
+    });
 }
 //Öffnen
 function openPatient(id) {
-    /* Hier Informationsgetter hinzufügen */
-    identifier = newTab('Neuer Patient')
-    $.post("sites/patient.html", 
-        function(data, status){
-            $(identifier).html(data);
-            $(identifier).find('#savebutton').button().click(function(){
-                savePatient( "#" + $(this).parents('.patientsdata').parent().attr('id'))
-            })
-            $(identifier).find('#createtreatmentbutton').button().click(function(){
-                openTreatment($(this).parents('table').parent().find('#identifier').val(),"new")
-            })
-            $(identifier).find('#createtreatmentbutton').button('disable')
+    value = true
+    $.each($('.patientidentifiers'),function(index){
+        if ($('.patientidentifiers').eq(index).val() == id) {
+            alert('Du hast diesen Patienten bereits offen!')
+            value = false;
         }
-    );
-    //LADEFUNKTION!!!
-    if(id!='new'){
-        $.post("data.php", 
+    })
+    if (value) {
+        identifier = newTab('Neuer Patient')
+        $.post("sites/patient.html", 
             function(data, status){
-                patient = $.parseJSON(data);
-                patient.each(function(data){
-
+                $(identifier).html(data);
+                $(identifier).find('#savebutton').button().click(function(){
+                    savePatient( "#" + $(this).parents('.patientsdata').parent().attr('id'))
                 })
+                $(identifier).find('#createtreatmentbutton').button().click(function(){
+                    openTreatment($(this).parents('table').parent().find('#identifier').val(),"new")
+                })
+                $(identifier).find('#createtreatmentbutton').button('disable')
             }
-        )
-        $(identifier).find('.minimum').attr('disabled', true)
+        );
+        //Lade einen Eintrag
+        if(id!='new'){
+            $.ajax({
+                type: "POST",
+                url: 'data.php',
+                data: {
+                    action:'loadPatient',
+                    id:id
+                },
+                success: function(data){
+                    patient = $.parseJSON(data)
+                    $.each(patient, function(index,value){
+                        $(identifier + " #" + index).val(value);
+                    })
+                    $(identifier + " #gender #" + patient['gender']).prop('selected', true)
+                    $(identifier + " #bloodtype #" + patient['bloodtype']).prop('selected', true)
+                    $(identifier + " #martialstatus #" + patient['martialstatus']).prop('selected', true)
+                    $.each($.parseJSON(patient['addiction']), function(index, value){
+                        $(identifier + " #addiction #" + value).prop('selected', true)
+                    })
+                    $('a#tab' + identifier.split('#')[1]).text(patient['surname'] + ", " + patient['name'])
+                },
+            });
+            $(identifier).find('#createtreatmentbutton').button('enable')
+            $(identifier).find('.minimum').attr('disabled', true)
+        }
     }
-    
 }
 
 //Speichern

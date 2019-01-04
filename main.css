@@ -145,19 +145,19 @@
     padding: 0px !important;
 }
 
-#adminbody table {
+.fancytable table {
     background-color: #ffeda0;
     border-collapse: collapse;
     border: none;
     width: 100%;
 }
-#adminbody tbody tr:nth-child(even) {
+.fancytable tbody tr:nth-child(even) {
     background-color: #ead78a;
 }
-#adminbody thead {
+.fancytable thead {
     background-color: #f3c600; 
 }
-#adminbody td, th {  
+.fancytable td, th {  
     text-align: left;
     padding: 0.5em 1em;
 }

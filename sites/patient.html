@@ -1,7 +1,6 @@
-<button class="close">X</button>
 <fieldset class="patientsdata roundborders">
     <legend class="legend">Patientendaten</legend>
-    <input type="hidden" id="identifier" value="new">
+    <input type="hidden" id="identifier" class="patientidentifiers" value="new">
     <table class="table_patientsdata">
         <tr>
             <td>Name:</td>
@@ -56,7 +55,7 @@
             <td>Familienstand:</td>
             <td>
                 <select id="martialstatus">
-                    <option disabled selected id="">Bitte Auswählen</option>
+                    <option disabled selected id="notselected">Bitte Auswählen</option>
                     <option id="single">Ledig</option>
                     <option id="married">Verheiratet</option>
                     <option id="divorced">Geschieden</option>

@@ -64,29 +64,21 @@
                     <button type="button" id="openadmin">Adminseiten</button>
                 </div>
                 <br><br>
-                <fieldset id="patientsearch" class="roundborders">
+                <fieldset id="patientsearch" class="roundborders fancytable">
                     <legend class="legend">Patient suchen</legend>
-                    <table>
+                    <table >
                         <thead>
                             <tr>
                                 <th>Name</th>
-                                <th>Vorname</th>
                                 <th>Geburtsdatum</th>
                                 <th>Geschlecht</th>
                                 <th><button type="button">Zurücksetzen</button></th>
                             </tr>
                             <tr>
-                                <th><input id="surname" size="15" class="searchPatient"></th>
-                                <th><input id="name" size="15" class="searchPatient"></th>
-                                <th><input type="date" class="searchPatient"></th>
-                                <th>
-                                    <select class="">
-                                        <option>Unbekannt</option>
-                                        <option>Männlich</option>
-                                        <option>Weiblich</option>
-                                    </select>
-                                </th>
-                                <th><button type="button">Suchen</button></th>
+                                <th><input id="name" size="30" class="searchPatient"></th>
+                                <th></th>
+                                <th></th>
+                                <th><button id="search" type="button">Suchen</button></th>
                             </tr>
                         </thead>
                         <tbody></tbody>
