@@ -1,5 +1,6 @@
 //USERVARIABLE!
 var user = {};
+var num_tabs = 0;
 
 //Initialisieren des Loginfensters
 function openLoginWindow() {
@@ -34,7 +35,7 @@ function siteloader() {
 
 //Neuen Tab Erstellen
 function newTab(tabtitle) {
-    var num_tabs = $("div#main ul li").length + 1;
+    num_tabs = num_tabs + 1;
     $("div#main #bodynavigator").append(
         "<li id='tabmain-" + num_tabs + "'><a href='#main-" + num_tabs + "' id='tabmain-" + num_tabs + "'>" + tabtitle + "</a><button id='closetabmain-" + num_tabs + "'>x</button></li>"
     );
