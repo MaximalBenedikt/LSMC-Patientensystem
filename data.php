@@ -1,6 +1,5 @@
 <?php
-    $pdo = new PDO('mysql:host=localhost;dbname=lsmc_db', 'root', '');
-
+    require('db.php')
     function utf8ize($mixed) {
         if (is_array($mixed)) {
             foreach ($mixed as $key => $value) {
