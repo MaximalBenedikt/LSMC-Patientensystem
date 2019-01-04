@@ -79,6 +79,7 @@ function searchPatient(){
         },
     });
 }
+
 //Öffnen
 function openPatient(id) {
     value = true
@@ -123,10 +124,11 @@ function openPatient(id) {
                         $(identifier + " #addiction #" + value).prop('selected', true)
                     })
                     $('a#tab' + identifier.split('#')[1]).text(patient['surname'] + ", " + patient['name'])
+                    $(identifier).find('#createtreatmentbutton').button('enable')
+                    $(identifier).find('.minimum').attr('disabled', true)
+                    updateTreatmentlists()
                 },
             });
-            $(identifier).find('#createtreatmentbutton').button('enable')
-            $(identifier).find('.minimum').attr('disabled', true)
         }
     }
 }
@@ -173,6 +175,7 @@ function savePatient(identifier) {
                 $(identifier).find('.minimum').attr('disabled', true)
                 $(identifier).find('#createtreatmentbutton').button('enable')
                 $('a#tab' + identifier.split('#')[1]).text(patient['surname'] + ", " + patient['name'])
+                updateTreatmentlists();
             }
         },
     });
@@ -273,6 +276,33 @@ function saveTreatment(userid, actionid, identifier) {
     })
 }
 
+//Aktualisieren der Behandlungslisten (In den Patientenblättern)
+function updateTreatmentlists() {
+    $.each($('.patientidentifiers'),function(index,value){
+        id = $(value).val()
+        if (id!='new') {
+            insertpoint = $(value).parent().siblings('.treatmentsdata').find('.actionstable tbody')
+            $.ajax({
+                type:"POST",
+                url:"data.php",
+                data:{
+                    action:'searchTreatments',
+                    id:id
+                },
+                success:function(data){
+                    treatments = $.parseJSON(data)
+                    $.each(treatments,function(index,treatment){
+                        insert = '<tr id="' + treatment['id'] + '"><td>' + treatment['id'] + '</td><td>' + treatment['diagnosis'] + '</td><td>' + treatment['treatment'] + '</td><td>' + treatment['drugs'] + '</td><td>' + treatment['medic'] + '</td></tr>'
+                        $(insertpoint).append(insert)
+                        $(insertpoint).find('#' + treatment['id']).click(function(){
+                            //loadTreatment($(this).attr('id'))
+                        })
+                    })
+                }
+            })
+        }
+    })
+}
 
 //ADMINFUNKTIONEN!
 function openAdmin() {

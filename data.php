@@ -13,6 +13,7 @@
     }
 
     //Useractionen
+    //Lädt alle Nutzer des Systems für Behandlungsakten und Adminbackend
     if ($_POST['action'] == 'loaduserslist') {
         $sql = "SELECT `id`, `dienstid`, `name`, `surname`, `training`, `username` FROM `users`";
         $statement = $pdo->prepare($sql);
@@ -69,6 +70,14 @@
         $statement->execute();
         $return = $statement->fetch();
         echo $return['identifier'];
+    }
+    //Suche alle Behandlungsakten einer Person
+    if ($_POST['action'] == 'searchTreatments') {
+        $sql = "SELECT `id`,`patient`,`diagnosis`,`treatment`,`drugs`,`medic` FROM `protocols` WHERE `patient`=" . $_POST['id'];
+        $statement = $pdo->prepare($sql);
+        $statement->execute();
+        $return = $statement->fetchAll();
+        echo json_encode(utf8ize($return));
     }
 
 
