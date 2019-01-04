@@ -252,12 +252,12 @@ function saveTreatment(userid, actionid, identifier) {
         alert('Kein Arzt eingetragen!');
         return;
     } else {
-        data['medic'] = data['medic'].split(' ')[0];
+        data['medicid'] = data['medic'].split(' ')[0];
     }
     //data['injuries'] = $(identifier).find('.verletzungen input').prop('selected');
     data['assistingmedic'] = $(identifier).find('#assistingmedic').val();
     if (data['assistingmedic']!='') {
-        data['assistingmedic'] = data['assistingmedic'].split(' ')[0];
+        data['assistingmedicid'] = data['assistingmedic'].split(' ')[0];
     }
     data['diagnosis'] = $(identifier).find('#diagnosis').val();
     data['treatment'] = $(identifier).find('#treatment').val();
