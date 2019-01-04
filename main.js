@@ -222,6 +222,53 @@ function openTreatment(userid, id) {
                 }
             })
         }
+    } else {
+        identifier = newTab('Behandlung: ' + id)
+        $.ajax({
+            type:"POST",
+            url:"sites/protokoll.html",
+            success:function(data, status){
+                $(identifier).html(data);
+                $(identifier).find('#savebutton').button().click(function(){
+                    saveTreatment($(this).parents('.behandlungsprotokoll').find('#userid').val(),$(this).parents('.behandlungsprotokoll').find('#actionid').val(),$(this).parents('.behandlungsprotokoll').parent())
+                })
+            }
+        })
+        $.ajax({
+            type: "POST",
+            url: 'data.php',
+            data: {
+                action: 'loadnewtreatmentpatient',
+                id:userid
+            },
+            success:function (data) {
+                user = $.parseJSON(data);
+                $(identifier).find('#userid').val( user['identifier'] );
+                $(identifier).find('#actionid').val( id );
+                $(identifier).find('#surname').val( user['surname'] );
+                $(identifier).find('#name').val( user['name'] );
+                $(identifier).find('#' + user['gender']).attr('selected', true)
+                $(identifier).find('#surname, #name, #gender').attr('disabled',true)
+            }
+        })
+        $.ajax({
+            type: "POST",
+            url: 'data.php',
+            data: {
+                action: 'loadTreatment',
+                treatment:id
+            },
+            success:function (data) {
+                treatment = $.parseJSON(data);
+                $(identifier).find('#symptoms').val( treatment['symptoms'] )
+                $(identifier).find('#medic').val( treatment['medic'] )
+                $(identifier).find('#assistingmedic').val( treatment['assistingmedic'] )
+                $(identifier).find('#diagnosis').val( treatment['diagnosis'] )
+                $(identifier).find('#treatment').val( treatment['treatment'] )
+                $(identifier).find('#drugs').val( treatment['drugs'] )
+                $(identifier).find('#datetime').val( treatment['datetime'] )
+            }
+        })
     }
     //Lädt die 2 Ärztelisten
     $.ajax({
@@ -301,7 +348,7 @@ function updateTreatmentlists() {
                         insert = '<tr id="' + treatment['id'] + '"><td>' + treatment['id'] + '</td><td>' + treatment['diagnosis'] + '</td><td>' + treatment['treatment'] + '</td><td>' + treatment['drugs'] + '</td><td>' + treatment['medic'] + '</td></tr>'
                         $(insertpoint).append(insert)
                         $(insertpoint).find('#' + treatment['id']).click(function(){
-                            //loadTreatment($(this).attr('id'))
+                            openTreatment(id,$(this).attr('id'))
                         })
                     })
                 }

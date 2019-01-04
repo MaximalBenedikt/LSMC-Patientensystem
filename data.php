@@ -92,6 +92,15 @@
         echo json_encode(encodeUTFarray($return));
     }
 
+    if ($_POST['action'] == 'loadTreatment') {
+        $sql = "SELECT * FROM `protocols` WHERE `id`=" . $_POST['treatment'];
+        $statement = $pdo->prepare($sql);
+        $statement->execute();
+        $return = $statement->fetch(); 
+        $return['datetime'] = date("Y-m-d",strtotime($return['datetime'])) . 'T' . date("H:i:s",strtotime($return['datetime']));
+        echo json_encode(encodeUTFarray($return));
+    }
+
 
     //Laden der Daten für Neue Behandlung bei einer vorher ausgewählten Person!
     if ($_POST['action'] == 'loadnewtreatmentpatient') {
