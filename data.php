@@ -100,8 +100,6 @@
         $return['datetime'] = date("Y-m-d",strtotime($return['datetime'])) . 'T' . date("H:i:s",strtotime($return['datetime']));
         echo json_encode(encodeUTFarray($return));
     }
-
-
     //Laden der Daten für Neue Behandlung bei einer vorher ausgewählten Person!
     if ($_POST['action'] == 'loadnewtreatmentpatient') {
         $sql = "SELECT `name`,`surname`,`gender`,`identifier` FROM `patients` WHERE `identifier` = " . $_POST['id'];
@@ -113,7 +111,8 @@
     //Behandlung speichern
     if ($_POST['action'] == 'saveTreatment') {
         $treatment = decodeUTFarray($_POST['treatment']);
-        $treatment['datetime'] = date('Y-m-d H:i:s', strtotime($treatment['datetime']));        
+        $treatment['datetime'] = date('Y-m-d H:i:s', strtotime($treatment['datetime']));
+        $treatment['NU'] = date('Y-m-d H:i:s', strtotime($treatment['NU']));        
         $sql = '';
         if ($_POST['id'] == 'new') {
             $vars = ""; $values = "";

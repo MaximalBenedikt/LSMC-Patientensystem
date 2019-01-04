@@ -267,6 +267,7 @@ function openTreatment(userid, id) {
                 $(identifier).find('#treatment').val( treatment['treatment'] )
                 $(identifier).find('#drugs').val( treatment['drugs'] )
                 $(identifier).find('#datetime').val( treatment['datetime'] )
+                $(identifier).find('#NU').val( treatment['NU'] )
             }
         })
     }
@@ -295,6 +296,7 @@ function saveTreatment(userid, actionid, identifier) {
     var data = {};
     data['patient'] = $(identifier).find('#userid').val();
     data['datetime'] = $(identifier).find('#datetime').val();
+    data['NU'] = $(identifier).find('#NU').val();
     data['symptoms'] = $(identifier).find('#symptoms').val();
     data['medic'] = $(identifier).find('#medic').val();
     if (data['medic'] == '') {
