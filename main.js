@@ -27,17 +27,26 @@ function siteloader() {
     $('#newpatient').button().click(function() { openPatient('new'); })
     $('#newaction').button().click(function() { openTreatment(0,'new'); })
     $('#openadmin').button().click(function() { openAdmin(); })
+    $('#openadmin').button('disable')
+    $('#newaction').button('disable')
 }
 
 //Neuen Tab Erstellen
 function newTab(tabtitle) {
     var num_tabs = $("div#main ul li").length + 1;
     $("div#main #bodynavigator").append(
-        "<li><a href='#main-" + num_tabs + "' id='tabmain-" + num_tabs + "'>" + tabtitle + "</a></li>"
+        "<li id='tabmain-" + num_tabs + "'><a href='#main-" + num_tabs + "' id='tabmain-" + num_tabs + "'>" + tabtitle + "</a><button id='closetabmain-" + num_tabs + "'>x</button></li>"
     );
     $("div#main").append(
         "<div id='main-" + num_tabs + "'>#" + num_tabs + "</div>"
     );
+    $("#closetabmain-" + num_tabs).button().click(function(){
+        if (confirm('Möchtest du diesen Tab wirklich schließen?')) {
+            $($(this).siblings('a').attr('href')).remove();
+            $(this).parent().remove();
+            $("div#main").tabs("refresh");
+        }
+    })
     $("div#main").tabs("refresh");
     return "div#main-" + num_tabs;
 }
