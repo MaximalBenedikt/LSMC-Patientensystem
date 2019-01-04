@@ -1,16 +1,6 @@
 <?php
     include('config.php');
     $pdo = new PDO( $config['dbhost'] , $config['dbuser'] , $config['dbpass'] );
-    function utf8ize($mixed) {
-        /*if (is_array($mixed)) {
-            foreach ($mixed as $key => $value) {
-                $mixed[$key] = utf8ize($value);
-            }
-        } else if (is_string ($mixed)) {
-            return utf8_encode($mixed);
-        }*/
-        return $mixed;
-    }
 
     //Useractionen
     //Lädt alle Nutzer des Systems für Behandlungsakten und Adminbackend
@@ -19,7 +9,7 @@
         $statement = $pdo->prepare($sql);
         $statement->execute();
         $return = $statement->fetchAll();
-        echo json_encode(utf8ize($return));
+        echo json_encode($return);
         
     }
 
@@ -31,7 +21,7 @@
         $statement = $pdo->prepare($sql);
         $statement->execute();
         $return = $statement->fetchAll();
-        echo json_encode(utf8ize($return));
+        echo json_encode($return);
     }
     //Öffnen
     if ($_POST['action'] == 'loadPatient') {
@@ -39,7 +29,7 @@
         $statement = $pdo->prepare($sql);
         $statement->execute();
         $return = $statement->fetch();
-        echo json_encode(utf8ize($return));
+        echo json_encode($return);
     }
     //Speichern
     if ($_POST['action'] == 'savepatient') {
@@ -77,7 +67,7 @@
         $statement = $pdo->prepare($sql);
         $statement->execute();
         $return = $statement->fetchAll();
-        echo json_encode(utf8ize($return));
+        echo json_encode($return);
     }
 
 
@@ -87,7 +77,7 @@
         $statement = $pdo->prepare($sql);
         $statement->execute();
         $return = $statement->fetch();
-        echo json_encode(utf8ize($return));
+        echo json_encode($return);
     }
     //Behandlung speichern
     if ($_POST['action'] == 'saveTreatment') {
@@ -131,5 +121,5 @@
         $statement = $pdo->prepare($sql);
         $statement->execute();
         $return = $statement->fetch();
-        echo json_encode(utf8ize($return));
+        echo json_encode($return);
     }
