@@ -1,13 +1,24 @@
 <?php
     include('config.php');
     $pdo = new PDO( $config['dbhost'] , $config['dbuser'] , $config['dbpass'] );
-    function utf8ize($mixed) {
+    function encodeUTFarray($mixed) {
         if (is_array($mixed)) {
             foreach ($mixed as $key => $value) {
-                $mixed[$key] = utf8ize($value);
+                $mixed[$key] = encodeUTFarray($value);
             }
         } else if (is_string ($mixed)) {
             return utf8_encode($mixed);
+        }
+        return $mixed;
+    }
+
+    function decodeUTFarray($mixed) {
+        if (is_array($mixed)) {
+            foreach ($mixed as $key => $value) {
+                $mixed[$key] = decodeUTFarray($value);
+            }
+        } else if (is_string ($mixed)) {
+            return utf8_decode($mixed);
         }
         return $mixed;
     }
@@ -19,7 +30,7 @@
         $statement = $pdo->prepare($sql);
         $statement->execute();
         $return = $statement->fetchAll();
-        echo json_encode(utf8ize($return));
+        echo json_encode(encodeUTFarray($return));
         
     }
 
@@ -31,7 +42,7 @@
         $statement = $pdo->prepare($sql);
         $statement->execute();
         $return = $statement->fetchAll();
-        echo json_encode(utf8ize($return));
+        echo json_encode(encodeUTFarray($return));
     }
     //Öffnen
     if ($_POST['action'] == 'loadPatient') {
@@ -39,11 +50,12 @@
         $statement = $pdo->prepare($sql);
         $statement->execute();
         $return = $statement->fetch();
-        echo json_encode(utf8ize($return));
+        echo json_encode(encodeUTFarray($return));
     }
     //Speichern
     if ($_POST['action'] == 'savepatient') {
-        $patient = $_POST['patient'];
+        $patient = decodeUTFarray($_POST['patient']);
+
         $patient['birthday'] = date('Y-m-d', strtotime($patient['birthday']));        
         $sql = '';
         if ($_POST['id'] == 'new') {
@@ -77,7 +89,7 @@
         $statement = $pdo->prepare($sql);
         $statement->execute();
         $return = $statement->fetchAll();
-        echo json_encode(utf8ize($return));
+        echo json_encode(encodeUTFarray($return));
     }
 
 
@@ -87,11 +99,11 @@
         $statement = $pdo->prepare($sql);
         $statement->execute();
         $return = $statement->fetch();
-        echo json_encode(utf8ize($return));
+        echo json_encode(encodeUTFarray($return));
     }
     //Behandlung speichern
     if ($_POST['action'] == 'saveTreatment') {
-        $treatment = $_POST['treatment'];
+        $treatment = decodeUTFarray($_POST['treatment']);
         echo "test";
         $treatment['datetime'] = date('Y-m-d H:i:s', strtotime($treatment['datetime']));        
         $sql = '';
@@ -120,16 +132,4 @@
         $statement->execute();
         $return = $statement->fetch();
         echo $return['identifier'];*/
-    }
-
-
-
-
-    //Laden für Auswahl (Startseite)
-    if ($_POST['action'] == 'savpatient') {
-        $sql = "SELECT `identifier` FROM `patients` ORDER BY `identifier` DESC LIMIT 25";
-        $statement = $pdo->prepare($sql);
-        $statement->execute();
-        $return = $statement->fetch();
-        echo json_encode(utf8ize($return));
     }
