@@ -347,7 +347,7 @@ function updateTreatmentlists() {
                 success:function(data){
                     treatments = $.parseJSON(data)
                     $.each(treatments,function(index,treatment){
-                        insert = '<tr id="' + treatment['id'] + '"><td>' + treatment['id'] + '</td><td>' + treatment['diagnosis'] + '</td><td>' + treatment['treatment'] + '</td><td>' + treatment['drugs'] + '</td><td>' + treatment['medic'] + '</td></tr>'
+                        insert = '<tr id="' + treatment['id'] + '"><td>' + treatment['id'] + '</td><td>' + treatment['diagnosis'] + '</td><td>' + treatment['treatment'] + '</td><td>' + treatment['drugs'] + '</td><td>' + treatment['medic'] + '</td><td>' + treatment['NU'] + '</td></tr>'
                         $(insertpoint).append(insert)
                         $(insertpoint).find('#' + treatment['id']).click(function(){
                             openTreatment(id,$(this).attr('id'))

@@ -44,12 +44,17 @@
 
 .actionstable {
     width: 100%;
+    font-size: 16px;
+}
+
+.actionstable .nuhead {
+    width: 92px;
 }
 
 .actionstable .idhead {
     width: 5%;
 }
-
+/*
 .actionstable .diagnosehead {
     width: 40%;
 }
@@ -60,7 +65,7 @@
 
 .actionstable .medicationshead {
     width: 20%;
-}
+}*/
 
 /* Behandlungsakten */
 
