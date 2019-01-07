@@ -11,7 +11,7 @@
         }
         return $mixed;
     }
-
+ 
     function decodeUTFarray($mixed) {
         if (is_array($mixed)) {
             foreach ($mixed as $key => $value) {
@@ -89,6 +89,7 @@
         $statement = $pdo->prepare($sql);
         $statement->execute();
         $return = $statement->fetchAll();
+        $return[0]['siteid']=$_POST['siteid'];
         echo json_encode(encodeUTFarray($return));
     }
 

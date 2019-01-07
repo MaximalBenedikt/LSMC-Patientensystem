@@ -125,6 +125,7 @@ function openPatient(id) {
                     $.each(patient, function(index,value){
                         $(identifier + " #" + index).val(value);
                     })
+                    $(identifier + " #identifier").prop("id", "patientsiteid" + patient['identifier'])
                     $(identifier + " #gender #" + patient['gender']).prop('selected', true)
                     $(identifier + " #bloodtype #" + patient['bloodtype']).prop('selected', true)
                     $(identifier + " #martialstatus #" + patient['martialstatus']).prop('selected', true)
@@ -354,6 +355,7 @@ function saveTreatment(userid, actionid, identifier) {
 function updateTreatmentlists() {
     $.each($('.patientidentifiers'),function(index,value){
         id = $(value).val()
+        siteid = $(value).prop('id')
         if (id!='new') {
             insertpoint = $(value).parent().siblings('.treatmentsdata').find('.actionstable tbody')
             $(value).parent().siblings('.treatmentsdata').find('.actionstable tbody').html('')
@@ -362,10 +364,12 @@ function updateTreatmentlists() {
                 url:"data.php",
                 data:{
                     action:'searchTreatments',
-                    id:id
+                    id:id,
+                    siteid:siteid
                 },
                 success:function(data){
                     treatments = $.parseJSON(data)
+                    insertpoint = $('#' + treatments[0]['siteid']).find('.actionstable tbody')
                     $.each(treatments,function(index,treatment){
                         date = treatment['NU'].split('-')
                         nu = date[2] + '.' + date[1] + '.' + date[0]
@@ -376,7 +380,7 @@ function updateTreatmentlists() {
                             nu = '/-/'
                         }
                         insert = '<tr id="' + treatment['id'] + '"><td>' + treatment['id'] + '</td><td>' + treatment['diagnosis'] + '</td><td>' + treatment['treatment'] + '</td><td>' + treatment['drugs'] + '</td><td>' + treatment['medic'] + '</td><td>' + nu + '</td></tr>'
-                        $(insertpoint).append(insert)
+                        $("#patientsiteid" + treatment['patient']).parent().parent().find('.actionstable tbody').append(insert)
                         $(insertpoint).find('#' + treatment['id']).click(function(){
                             openTreatment(id,$(this).attr('id'))
                         })
