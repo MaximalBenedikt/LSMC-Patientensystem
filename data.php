@@ -51,6 +51,7 @@
         $statement->execute();
         $return = $statement->fetch();
         echo json_encode(encodeUTFarray($return));
+        //Hmmm was passiert wohl jetzt?
     }
     //Speichern
     if ($_POST['action'] == 'savepatient') {
