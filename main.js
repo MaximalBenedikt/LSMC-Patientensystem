@@ -170,7 +170,7 @@ function savePatient(identifier) {
     patient['bloodtype']=$(identifier).find('#bloodtype option:selected').attr('id');
     patient['notes']=$(identifier).find('#notes').val();
     patient['emergencycontacts']=$(identifier).find('#emergencycontacts').val();
-    id=$(identifier).find('#identifier').val();
+    id=$(identifier).find('.patientidentifiers').val();
     $.ajax({
         type: "POST",
         url: 'data.php',
