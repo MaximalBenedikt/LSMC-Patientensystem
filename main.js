@@ -182,7 +182,7 @@ function savePatient(identifier) {
         success: function(data){
             if (id=='new') {
                 $(identifier).find('#identifier').val(data);
-                $(identifier).find('#identifier').prop('id', data)
+                $(identifier).find('#identifier').prop('id', "patientsiteid" + data)
                 $(identifier).find('.minimum').attr('disabled', true)
                 $(identifier).find('#createtreatmentbutton').button('enable')
                 $('a#tab' + identifier.split('#')[1]).text(patient['surname'] + ", " + patient['name'])
