@@ -106,7 +106,7 @@ function openPatient(id) {
                     savePatient( "#" + $(this).parents('.patientsdata').parent().attr('id'))
                 })
                 $(identifier).find('#createtreatmentbutton').button().click(function(){
-                    openTreatment($(this).parents('table').parent().find('#identifier').val(),"new")
+                    openTreatment($(this).parents('table').parent().find('.patientidentifiers').val(),"new")
                 })
                 $(identifier).find('#createtreatmentbutton').button('disable')
             }
@@ -357,7 +357,6 @@ function updateTreatmentlists() {
         id = $(value).val()
         siteid = $(value).prop('id')
         if (id!='new') {
-            insertpoint = $(value).parent().siblings('.treatmentsdata').find('.actionstable tbody')
             $(value).parent().siblings('.treatmentsdata').find('.actionstable tbody').html('')
             $.ajax({
                 type:"POST",
@@ -380,7 +379,7 @@ function updateTreatmentlists() {
                         }
                         insert = '<tr id="' + treatment['id'] + '"><td>' + treatment['id'] + '</td><td>' + treatment['diagnosis'] + '</td><td>' + treatment['treatment'] + '</td><td>' + treatment['drugs'] + '</td><td>' + treatment['medic'] + '</td><td>' + nu + '</td></tr>'
                         $("#patientsiteid" + treatment['patient']).parent().parent().find('.actionstable tbody').append(insert)
-                        $(insertpoint).find('#' + treatment['id']).click(function(){
+                        $("#patientsiteid" + treatment['patient']).parent().parent().find('#' + treatment['id']).click(function(){
                             openTreatment(id,$(this).attr('id'))
                         })
                     })
