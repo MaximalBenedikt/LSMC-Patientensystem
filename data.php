@@ -86,7 +86,7 @@
     }
     //Suche alle Behandlungsakten einer Person
     if ($_POST['action'] == 'searchTreatments') {
-        $sql = "SELECT `id`,`patient`,`diagnosis`,`treatment`,`drugs`,`medic`,`NU` FROM `protocols` WHERE `patient`=" . $_POST['id'] . " ORDER BY 'datetime' ";
+        $sql = "SELECT `id`,`patient`,`diagnosis`,`treatment`,`drugs`,`medic`,`NU` FROM `protocols` WHERE `patient`=" . $_POST['id'] . " ORDER BY `datetime` ";
         $statement = $pdo->prepare($sql);
         $statement->execute();
         $return = $statement->fetchAll();
