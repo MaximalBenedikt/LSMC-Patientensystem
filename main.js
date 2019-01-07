@@ -369,7 +369,6 @@ function updateTreatmentlists() {
                 },
                 success:function(data){
                     treatments = $.parseJSON(data)
-                    insertpoint = $('#' + treatments[0]['siteid']).find('.actionstable tbody')
                     $.each(treatments,function(index,treatment){
                         date = treatment['NU'].split('-')
                         nu = date[2] + '.' + date[1] + '.' + date[0]
