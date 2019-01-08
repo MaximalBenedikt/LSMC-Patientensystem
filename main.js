@@ -320,6 +320,7 @@ function saveTreatment(userid, actionid, identifier) {
     data['datetime'] = $(identifier).find('#datetime').val();
     data['NU'] = $(identifier).find('#NU').val();
     data['symptoms'] = $(identifier).find('#symptoms').val();
+    data['notes'] = $(identifier).find('#notes').val();
     data['medic'] = $(identifier).find('#medic').val();
     if (data['medic'] == '') {
         alert('Kein Arzt eingetragen!');
