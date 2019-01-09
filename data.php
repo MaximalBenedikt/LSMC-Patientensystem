@@ -1,4 +1,5 @@
 <?php
+    session_start();
     include('config.php');
     $pdo = new PDO( $config['dbhost'] , $config['dbuser'] , $config['dbpass'] );
     function encodeUTFarray($mixed) {
@@ -21,6 +22,21 @@
             return utf8_decode($mixed);
         }
         return $mixed;
+    }
+
+    //LOGIN!!! Hier wird zur Not auch Beendet!
+    if ($_POST['action'] == 'login') {
+        $sql = "SELECT `username`, `password` FROM `users` WHERE `username` = '" . $_POST['user']['username'] . "'";
+        $statement = $pdo->prepare($sql);
+        $statement->execute();
+        $return = $statement->fetch();
+        if ($return == false) {
+            
+        }
+    }
+
+    if (isset($_SESSION['verified'])) {
+        
     }
 
     //Useractionen

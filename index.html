@@ -35,19 +35,37 @@
                     </table>
                 </div>
                 <div id='login-2'>
-                    <table>
-                        <tr>
-                            <td>Nutzername:</td>
-                            <td><input id="register_username" /></td>
-                        </tr>
-                        <tr>
-                            <td>Passwort:</td>
-                            <td><input id="register_passwort" type="password" /></td>
-                        </tr>
-                        <tr>
-                            <td colspan="2"><button id="submit_register" type="button">Registrieren</button></td>
-                        </tr>
-                    </table>
+                    <form>
+                        <table>
+                            <tr>
+                                <td>Nutzername:</td>
+                                <td><input id="register_username" name="username" /></td>
+                            </tr>
+                            <tr>
+                                <td>E-Mail:</td>
+                                <td><input id="mail" name="e-mail"></td>
+                            </tr>
+                            <tr>
+                                <td>Name:</td>
+                                <td><input id="surname" name="surname"></td>
+                            </tr>
+                            <tr>
+                                <td>Vorname:</td>
+                                <td><input id="name" name="name"></td>
+                            </tr>
+                            <tr>
+                                <td>Passwort:</td>
+                                <td><input id="register_passwort" type="password" name="password" /></td>
+                            </tr>
+                            <tr>
+                                <td>Bestätigen:</td>
+                                <td><input id="register_passwort_confirm" type="password"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"><button id="submit_register" type="button">Registrieren</button></td>
+                            </tr>
+                        </table>
+                    </form>
                 </div>
             </div>
         </div>

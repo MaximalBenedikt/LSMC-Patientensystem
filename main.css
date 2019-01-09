@@ -2,12 +2,27 @@
     width: -webkit-fill-available;
 }
 
+#loginwindow .error {
+    width: -webkit-fill-available;
+    text-align: center;
+    padding: 14px;
+    background-color: red;
+    color: white;
+}
+
+#loginwindow .errorsmall {
+    width: -webkit-fill-available;
+    text-align: center;
+    background-color: red;
+    color: white;
+    font-size: 13px;
+}
+
 .notCloseableDialog .ui-button-icon-only{
     display: none !important;
 }
 
 /* Fieldset und Legend */
-
 .roundborders {
     padding: 5px;
     padding-top: 10px;

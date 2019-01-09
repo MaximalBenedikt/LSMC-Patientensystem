@@ -6,12 +6,46 @@ var num_tabs = 0;
 function openLoginWindow() {
     $('#login').tabs();
     $('#submit_login').button().click(function () {
-        user = {};
-        user['username'] = $('#login_username').val();
-        user['password'] = $('#login_password').val();
-        $('#loginwindow').dialog('destroy').remove();
+        loginuser = {}
+        loginuser['username'] = $('#login_username').val();
+        loginuser['password'] = $('#login_passwort').val();
+        $.ajax({
+            type: "POST",
+            url: 'data.php',
+            data: {
+                action:'login',
+                user:loginuser
+            },
+            success: function(data){
+                $('#loginwindow .error').remove();
+                if (Array.isArray(data)) {
+                    user = $.parseJSON(data)
+                    $('#loginwindow').dialog('destroy').remove()
+                } else {
+                    $('#loginwindow #login-1').append('<div class="error"><b><u>Falscher Username oder Passwort!!!</b></u></div>')
+                }
+            }
+        })
     });
     $('#submit_register').button().click(function () {
+        $('#login-2 .errorsmall').remove()
+        noregister = 0;
+        $.each($('#login-2').find('input'), function (index,value) {
+            if ($(value).val() == '') {
+                $(value).css('background-color','red')
+                $(value).parent().append('<div class="errorsmall">Dieses Feld muss ausgefüllt sein</div>')
+                noregister = 1
+            } else {
+                $(value).css('background-color','')
+            }
+        })
+        if ($('#login-2 #register_passwort').val() == $('#login-2 #register_passwort_confirm').val()) {
+            if (noregister == 0) {
+                console.log('SEND')
+            }                
+        } else {
+            $('#login-2 #register_passwort_confirm').parent().append('<div class="errorsmall">Die Passwörter stimmen nicht überein!</div>')
+        }
     });
     $('#loginwindow').dialog({
         width:"auto",
@@ -199,7 +233,6 @@ function savePatient(identifier) {
 //ÖFFNEN
 function openTreatment(userid, id) {
     var identifier = "";
-    /* Hier Informationsgetter hinzufügen */
     if (id=='new') {
         identifier = newTab('Neue Behandlung')
         $.ajax({
@@ -440,8 +473,5 @@ function openUserEdit(userid) {
 //Functioncaller
 $(function () {
     openLoginWindow();
-    //DEBUGFUNKTION!!!
-    $('#loginwindow').dialog('destroy').remove();
-    //DEBUG ENDE!!!
     siteloader();
 })
