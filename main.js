@@ -18,10 +18,11 @@ function openLoginWindow() {
             },
             success: function(data){
                 $('#loginwindow .error').remove();
-                if (Array.isArray(data)) {
-                    user = $.parseJSON(data)
-                    $('#loginwindow').dialog('destroy').remove()
-                } else {
+                try{
+                    var user = JSON.parse(data);
+                    $('#loginwindow').dialog('destroy').remove();
+                }
+                catch(e){
                     $('#loginwindow #login-1').append('<div class="error"><b><u>Falscher Username oder Passwort!!!</b></u></div>')
                 }
             }
@@ -41,7 +42,32 @@ function openLoginWindow() {
         })
         if ($('#login-2 #register_passwort').val() == $('#login-2 #register_passwort_confirm').val()) {
             if (noregister == 0) {
-                console.log('SEND')
+                data = $('#login-2 input').serializeArray();
+                if (data['0']['value'].length == 1) {
+                    data['0']['value'] = '0' + data['0']['value']
+                }
+                $.ajax({
+                    type: "POST",
+                    url: 'data.php',
+                    data: {
+                        action:'register',
+                        registerdata:data
+                    },
+                    success: function(data){
+                        $('#loginwindow .error').remove();
+                        if (data == 'success!') {
+                            $('#login').remove();
+                            $('#loginwindow').append('<div class="error">Bitte bei Dr. Hanson oder Dr. Parker melden!<br>Ihr Zugang sollte in Kürze freigeschalten sein!</div>')
+                        } else {
+                            if (data == 'doubleusername') {
+                                errormsg = 'Diese Dienstnr besteht bereits!'
+                            } else {
+                                errormsg = 'Unbekannter Fehler!'
+                            }
+                            $('#loginwindow #login-2').append('<div class="error"><b><u>' + errormsg + '</b></u></div>')
+                        }
+                    }
+                })
             }                
         } else {
             $('#login-2 #register_passwort_confirm').parent().append('<div class="errorsmall">Die Passwörter stimmen nicht überein!</div>')

@@ -26,17 +26,52 @@
 
     //LOGIN!!! Hier wird zur Not auch Beendet!
     if ($_POST['action'] == 'login') {
-        $sql = "SELECT `username`, `password` FROM `users` WHERE `username` = '" . $_POST['user']['username'] . "'";
+        $sql = "SELECT `dienstid`, `passwort` FROM `users` WHERE `dienstid` = '" . $_POST['user']['username'] . "'";
         $statement = $pdo->prepare($sql);
         $statement->execute();
         $return = $statement->fetch();
-        if ($return == false) {
-            
+        if (isset($return['dienstid'])) {
+            if (($return['dienstid'] == $_POST['user']['username']) and ($return['passwort'] == md5($_POST['user']['password']))) {
+                $sql = "SELECT `dienstid`,`name`,`surname`,`admin`,`rights` FROM `users` WHERE `dienstid` = '" . $_POST['user']['username'] . "'";
+                $statement = $pdo->prepare($sql);
+                $statement->execute();
+                $return = $statement->fetch();
+                $_SESSION['loggedin'] = true;
+                die( json_encode(encodeUTFarray($return)) );
+            } else {
+                die('error');
+            }
+        } else {
+            die('error');
         }
     }
 
-    if (isset($_SESSION['verified'])) {
-        
+    if ($_POST['action'] == 'register') {
+        $register = $_POST['registerdata'];
+        $register['4']['value'] = md5($register['4']['value']);
+        $sql = 'SELECT * FROM `users` WHERE `dienstid` = "' . $register['0']['value'] . '"';
+        $statement = $pdo->prepare($sql);
+        $statement->execute();
+        $return = $statement->fetch();
+        if ( isset($return['dienstid']) ) {
+            die('doubleusername');
+        }
+        $vars = ""; $values = "";
+        foreach ($register as $key => $value) {
+            $vars = $vars . '`' . $value['name'] . '`,';
+            $values = $values . "'" . $value['value'] . "',";
+        }
+        $values = rtrim($values,','); $vars = rtrim($vars,',');
+        $sql = 'INSERT INTO `users` (' . $vars . ') VALUES (' . $values . ')';
+        $statement = $pdo->prepare($sql);
+        $statement->execute();
+        $return = $statement->fetch();
+        die('success!');
+    }
+
+    //Hier Stopt der Script wenn der User nicht Verifiziert ist
+    if (!$_SESSION['loggedin']) {
+        die('not logged in!');
     }
 
     //Useractionen
@@ -47,7 +82,7 @@
         $statement->execute();
         $return = $statement->fetchAll();
         echo json_encode(encodeUTFarray($return));
-        
+        die();
     }
 
 
@@ -59,6 +94,7 @@
         $statement->execute();
         $return = $statement->fetchAll();
         echo json_encode(encodeUTFarray($return));
+        die();
     }
     //Öffnen
     if ($_POST['action'] == 'loadPatient') {
